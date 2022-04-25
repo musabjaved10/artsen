@@ -1,0 +1,73 @@
+import 'package:artsen_van/controllers/global_controller.dart';
+import 'package:artsen_van/utils/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class EnrolledCoursesScreen extends StatefulWidget {
+  const EnrolledCoursesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EnrolledCoursesScreen> createState() => _EnrolledCoursesScreenState();
+}
+
+class _EnrolledCoursesScreenState extends State<EnrolledCoursesScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<GlobalController>(
+        builder: (value) => Scaffold(
+          backgroundColor: value.isLightTheme.value
+              ? COLOR_OFFWHITE
+              : COLOR_DARK_BLUE,
+          body: Container(
+            padding: EdgeInsets.all(16.0),
+            height: Get.height,
+            width: Get.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(value.isLightTheme.value ? 'assets/images/logo-light.png' : 'assets/images/logo-dark.png', width: Get.width * 0.5,),
+                    SmallButton(icon: Icons.settings, onPressed: () => value.changeFont(),),
+                  ],
+                ),
+                SizedBox(height: Get.height * 0.01,),
+                Text('Course Title', style: !value.isLightTheme.value ? themeData.textTheme.headline1 : themeData.textTheme.headline2,),
+              ],
+            ),
+          ),
+        )
+    )
+    ;
+  }
+}
+
+
+                              Container(
+                                padding: EdgeInsets.all(12.0),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: controller.isLightTheme.value
+                                        ? Colors.transparent
+                                        : Colors.cyan
+                                  ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: controller.isLightTheme.value
+                                            ? Colors.grey.shade400
+                                            : Colors.transparent,
+                                        blurRadius: 10.0, // soften the shadow
+                                        offset: Offset(
+                                          1.0, // Move to right 10  horizontally
+                                          5.0, // Move to bottom 10 Vertically
+                                        ),
+                                      )
+                                    ],
+                                  borderRadius: BorderRadius.circular(14.0),
+                                  color: controller.isLightTheme.value
+                                      ? Colors.white
+                                      : COLOR_DARK_BLUE
+                                ),
+                              ),
